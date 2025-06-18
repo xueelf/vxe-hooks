@@ -12,6 +12,19 @@
   "scripts": {
     "build": "bun scripts/build/index.ts && tsc"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xueelf/vxe-hooks.git"
+  },
+  "keywords": [
+    "vxe-table"
+  ],
+  "author": "Yuki <admin@yuki.sh>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/xueelf/vxe-hooks/issues"
+  },
+  "homepage": "https://github.com/xueelf/vxe-hooks#readme",
   "devDependencies": {
     "@types/bun": "latest",
     "vue": "latest",

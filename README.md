@@ -170,7 +170,7 @@ npm install vxe-table vxe-hooks
 
 ```typescript
 import axios from 'axios';
-import { useTable } from 'vxe-hooks';
+import { type TableOptions, useTable } from 'vxe-hooks';
 
 interface CustomTableOptions extends TableOptions {
   searchConfig?: {
