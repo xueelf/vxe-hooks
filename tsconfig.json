@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    /* Language and Environment */
+    "target": "ESNext",
+    "lib": ["DOM", "ESNext"],
+    "moduleDetection": "force",
+
+    /* Modules */
+    "module": "ESNext",
+    "rootDir": "src",
+    "moduleResolution": "bundler",
+    "baseUrl": "./",
+    "paths": {},
+    "allowImportingTsExtensions": true,
+
+    /* Emit */
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "declarationDir": "lib",
+
+    /* Interop Constraints */
+    "verbatimModuleSyntax": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+
+    /* Type Checking */
+    "strict": true,
+    "noFallthroughCasesInSwitch": true,
+
+    /* Completeness */
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*.ts"]
+}

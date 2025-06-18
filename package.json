@@ -1,0 +1,23 @@
+{
+  "name": "vxe-hooks",
+  "version": "0.0.1",
+  "description": "Using Hooks in Vxe Table",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "type": "module",
+  "packageManager": "bun@1.2.0",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "bun scripts/build/index.ts && tsc"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "vue": "latest",
+    "vxe-table": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "latest"
+  }
+}
