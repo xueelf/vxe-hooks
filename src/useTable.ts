@@ -1,4 +1,4 @@
-import { defineComponent, ref, computed, h } from 'vue';
+import { defineComponent, ref, computed, h, watch } from 'vue';
 import {
   type VxeGridProps,
   type VxeGridEventProps,
@@ -24,6 +24,18 @@ export function useTable<D>(
         return { ...options, ...props, ...attrs };
       });
 
+      watch(
+        () => attributes.value.columns,
+        async columns => {
+          if (Array.isArray(columns) === false) {
+            return;
+          }
+          await instanceRef.value?.loadColumn(columns);
+        },
+        {
+          deep: true,
+        },
+      );
       return () =>
         h(
           VxeGrid,

@@ -9,6 +9,7 @@
 
 - **开箱即用**：简化复杂的组件配置
 - **轻量级**：无需配置 JSX 也可直接使用
+- **功能增强**：针对特定场景进行了代码逻辑优化
 - **TypeScript 支持**：完整的类型定义
 
 ## 📦 安装
@@ -169,6 +170,7 @@ npm install vxe-table vxe-hooks
 你可以使用下列类似的方式，来轻松实现自定义 Hooks：
 
 ```typescript
+import _ from 'lodash';
 import axios from 'axios';
 import { type TableOptions, useTable } from 'vxe-hooks';
 
@@ -182,15 +184,28 @@ interface CustomTableOptions extends TableOptions {
 async function useCustomTable(options: CustomTableOptions) {
   if (options.searchConfig?.url) {
     const { url, params } = options.searchConfig;
-    const { data } = await axios.get(url, {
-      params,
-    });
 
-    options.data = data;
+    _.defaultsDeep(options, {
+      proxyConfig: {
+        ajax: {
+          query() {
+            return axios.get(url, {
+              params,
+            });
+          },
+        },
+      },
+    });
   }
   return useTable(options);
 }
 ```
+
+## 📝 差异化
+
+与 vxe-table 相比，vxe-hooks 在使用上不论是相关配置项还是组件表现行为，都是完全一致的，不过它们之间有着细微的不同。
+
+在 `vxe-grid` 中，我们无法为其动态渲染 columns，只能通过 `reloadColumn` 重新加载列。为了解决这个问题，`useGrid` 使用 `watch` 监听了 `options.columns`，当 columns 发生变化时，会自动重新加载列，不用手动调用。
 
 ## 🕊️ TODO
 
