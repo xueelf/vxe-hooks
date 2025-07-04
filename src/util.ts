@@ -3,7 +3,7 @@ import { type Ref } from 'vue';
 export type InstanceActions<T> = {
   [K in keyof T as T[K] extends Function ? K : never]: T[K];
 } & {
-  getInstance(): Ref<T>;
+  getInstance(): T;
 };
 
 export function createInstanceActions<T>(ref: Ref, name: string): InstanceActions<T> {
