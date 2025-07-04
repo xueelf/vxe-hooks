@@ -5,16 +5,17 @@ import {
   type VxeTableInstance,
   VxeGrid,
 } from 'vxe-table';
-import { type FunctionProperties, createInstanceActions } from './util';
+import { type InstanceActions, createInstanceActions } from './util';
 
 export type TableOptions<D = any> = VxeGridProps<D>;
 export type TableProps<D = any> = VxeGridProps<D> & VxeGridEventProps<D>;
 export type TableInstance = VxeTableInstance | null;
-export type TableActions = FunctionProperties<VxeTableInstance>;
+export type TableActions = InstanceActions<VxeTableInstance>;
 
 export function useTable<D>(
   options?: TableOptions<D>,
-): [ReturnType<typeof defineComponent<TableProps<D>>>, FunctionProperties<VxeTableInstance>] {
+): [ReturnType<typeof defineComponent<TableProps<D>>>, InstanceActions<VxeTableInstance>] {
+  // 兼容 Vue 3.5-，不使用 useTemplateRef
   const instanceRef = ref<TableInstance>(null);
   const instanceActions = createInstanceActions<VxeTableInstance>(instanceRef, 'Table');
 

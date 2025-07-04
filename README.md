@@ -205,7 +205,28 @@ async function useCustomTable(options: CustomTableOptions) {
 
 与 vxe-table 相比，vxe-hooks 在使用上不论是相关配置项还是组件表现行为，都是完全一致的，不过它们之间有着细微的不同。
 
-在 `vxe-grid` 中，我们无法为其动态渲染 columns，只能通过 `reloadColumn` 重新加载列。为了解决这个问题，`useGrid` 使用 `watch` 监听了 `options.columns`，当 columns 发生变化时，会自动重新加载列，不用手动调用。
+在 `vxe-grid` 中，我们无法为其动态渲染 columns，只能通过 `loadColumn` 重新加载列。为了解决这个问题，`useGrid` 使用 `watch` 监听了 `options.columns`，当 columns 发生变化时，会自动重新加载列，不用手动调用。
+
+使用 `useTable` 返回的元组第二个元素 `TableActions`，其结果与 `VxeTableInstance` 完全一致，但过滤掉了除函数以外的值，目的是为了防止组件在未被挂载时强行解构取值（高阶函数没有这个问题）。若要获取组件实例上的响应式属性，可以使用 `getInstance` 方法，其返回值为 `Ref<VxeTableInstance>`，与 `ref()` 等价。
+
+```vue
+<script setup lang="ts">
+  import { onMounted } from 'vue';
+  import { useTable } from 'vxe-hooks';
+
+  const [Table, { getInstance }] = useTable({
+    // ...
+  });
+
+  onMounted(() => {
+    console.log(getInstance().columns);
+  });
+</script>
+
+<template>
+  <Table />
+</template>
+```
 
 ## 🕊️ TODO
 
