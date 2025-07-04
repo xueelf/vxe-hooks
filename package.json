@@ -1,6 +1,6 @@
 {
   "name": "vxe-hooks",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Using Hooks in Vxe Table",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
