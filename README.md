@@ -106,8 +106,8 @@ npm install vxe-table vxe-hooks
 
 ```vue
 <script setup lang="ts">
-  import { onMounted } from 'vue';
   import { useTable } from 'vxe-hooks';
+  import { onMounted, nextTick } from 'vue';
 
   interface RowVO {
     id: number;
@@ -118,7 +118,7 @@ npm install vxe-table vxe-hooks
     address: string;
   }
 
-  const [Table, { reloadData }] = useTable<RowVO>({
+  const [Table, { loadData }] = useTable<RowVO>({
     columns: [
       { type: 'seq', width: 70 },
       { field: 'name', title: 'Name' },
@@ -127,8 +127,9 @@ npm install vxe-table vxe-hooks
     ],
   });
 
-  onMounted(() => {
-    reloadData([
+  onMounted(async () => {
+    await nextTick();
+    await loadData([
       { id: 10001, name: 'Test1', role: 'Develop', sex: 'Man', age: 28, address: 'test abc' },
       { id: 10002, name: 'Test2', role: 'Test', sex: 'Women', age: 22, address: 'Guangzhou' },
       { id: 10003, name: 'Test3', role: 'PM', sex: 'Man', age: 32, address: 'Shanghai' },
